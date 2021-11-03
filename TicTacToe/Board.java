@@ -12,14 +12,17 @@ public class Board {
         }
     }
     public void printBoard(){
-        System.out.println("--------------------------------");
-        for (int i = 0; i < BOARD_SIZE; i++){
-            System.out.print("|");
-            for(int j = 0; j < BOARD_SIZE; j++){
-                System.out.print(board[i][j] + "|");
+        synchronized(this) {
+            System.out.println("--------------------------------");
+            for (int i = 0; i < BOARD_SIZE; i++){
+                System.out.print("|");
+                for(int j = 0; j < BOARD_SIZE; j++){
+                    System.out.print(board[i][j] + "|");
+                }
+                System.out.println();
             }
-            System.out.println();
         }
+
     }
     public Boolean isPlaceEmpty(int row,int col){
         if (board[row-1][col-1] == 'X' || board[row-1][col-1] == 'O'){

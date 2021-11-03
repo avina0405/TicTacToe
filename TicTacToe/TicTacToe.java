@@ -11,9 +11,8 @@ public class TicTacToe implements Runnable {
     char[][] drawBoard = Board.board;
     public char turn = 'X';
     @Override
-    public void run(){
+    public synchronized void run(){
         // Print the board
-
         synchronized (this){
             while(board.Checkwinner()){
                 // Scan user input
@@ -22,6 +21,7 @@ public class TicTacToe implements Runnable {
                     System.exit(1);
                 }
                 System.out.println("Game Name: "+Thread.currentThread().getName());
+                System.out.println("Player Name: "+getTurn());
                 System.out.println("Enter Row");
                 try{
                     int row = input.nextInt();
@@ -55,7 +55,7 @@ public class TicTacToe implements Runnable {
 
             }
             changePlayer();
-            System.out.println("the winner is: "+Thread.currentThread().getName());
+            System.out.println("the winner is: "+getTurn());
             System.exit(1);
         }
     }
